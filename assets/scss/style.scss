@@ -1,0 +1,74 @@
+// Body
+body {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    background: #E3BAD5;
+    width: 80%;
+
+    @media (max-width: 400px){
+        width: 100%;
+    }
+    
+}
+
+// Formulaire inscription
+#inscriptionF {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & h1 {
+        text-align: center;
+    }
+    & .container {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        @media (max-width: 400px){
+        width: 60%;
+        }
+    }
+
+    & label {
+        font-weight: bold;
+    }
+
+    & input {
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Footer 
+footer{
+    border-top: 1px solid rgba(255, 255, 255, 0.356);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.342);
+    & a {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+    }
+}
+
+
+
+
+

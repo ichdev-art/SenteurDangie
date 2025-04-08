@@ -1,0 +1,52 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  background: #E3BAD5;
+  width: 80%;
+}
+@media (max-width: 400px) {
+  body {
+    width: 100%;
+  }
+}
+
+#inscriptionF {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#inscriptionF h1 {
+  text-align: center;
+}
+#inscriptionF .container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+@media (max-width: 400px) {
+  #inscriptionF .container {
+    width: 60%;
+  }
+}
+#inscriptionF label {
+  font-weight: bold;
+}
+#inscriptionF input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.356);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.342);
+}
+footer a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}/*# sourceMappingURL=style.css.map */
