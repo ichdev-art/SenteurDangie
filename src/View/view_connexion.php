@@ -10,7 +10,7 @@ include_once '../../templates/nav.php';
     <h1>Senteur D'angie</h1>
     <div class="label">
         <label for="mail">Email :</label><span><?= $error['email'] ?? '' ?></span>
-        <input type="text" placeholder="Ex : Lebgdu76" name="email" id="mail" value="" required>
+        <input type="email" placeholder="Ex : Lebgdu76" name="email" id="mail" value="" required>
 
     </div>
     <div class="label">

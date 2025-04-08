@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST['email']) && !empty($_POST['mot_de_passe'])) {
         // On se connecte a la base de donnée via pdo = creation instance
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-
         // Options avance sur notre instance
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
 
         $sql = 'SELECT use_mail,use_mdp from 76_users where use_mail = :mail';
 
