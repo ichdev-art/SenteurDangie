@@ -62,7 +62,6 @@ body {
 }
 
 // Confirmation
-
 .confirm {
     & h1 {
         text-align: center;
@@ -74,6 +73,55 @@ body {
         font-size: 1.5rem;
     }
 }
+
+// Connexion
+#connexionC {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & .label {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        @media (max-width: 400px) {
+            width: 60%;
+        }
+
+        & label {
+            font-weight: bold;
+        }
+
+        & span {
+            color: red;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        & input {
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px;
+        }
+    }
+    
+    & #valider {
+        border-radius: 5px;
+        padding: 0.5rem;
+        background-color: #5C5792;
+        color: white;
+        font-weight: bold;
+        }
+}
+
+.inscri {
+    text-align: center;
+}
+
+
 
 
 

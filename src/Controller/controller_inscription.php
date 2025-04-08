@@ -3,6 +3,8 @@ require_once '../../config.php';
 
 $regex_name = "/^[a-zA-Zï]+$/";
 $regex_password = "/^[a-zA-Z0-9]{8,30}+$/";
+$regex_adresse = "/^([1-9][0-9]*(?:-[1-9][0-9]*)?)\s*(bis|ter|qua)?\s+([\p{L}\-]+)\s+([\p{L}0-9\s\'\-]+)$/";
+$regex_postal = "/([0-9]{5})/";
 $error = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -70,12 +72,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['adresse'])) {
         if (empty($_POST['adresse'])) {
             $error['adresse'] = 'Adresse obligatoire';
+        } elseif (!preg_match($regex_adresse, $_POST['adresse'])) {
+            $error['adresse'] = 'Adresse non autorisés';
         }
     }
 
     if (isset($_POST['codePostal'])) {
         if (empty($_POST['codePostal'])) {
             $error['codePostal'] = 'Code postal obligatoire';
+        }else if (!preg_match($regex_postal, $_POST['codePostal'])) {
+            $error['codePostal'] = 'Code postal a 5 chiffre';
         }
     }
     if (isset($_POST['ville'])) {
