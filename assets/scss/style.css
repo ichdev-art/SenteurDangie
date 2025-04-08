@@ -32,13 +32,34 @@ body {
     width: 60%;
   }
 }
-#inscriptionF label {
+#inscriptionF .container label {
   font-weight: bold;
 }
-#inscriptionF input {
+#inscriptionF .container input {
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
+}
+#inscriptionF .container span {
+  color: red;
+  font-size: 1.2rem;
+  text-align: center;
+}
+#inscriptionF #valider {
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: #5C5792;
+  color: white;
+  font-weight: bold;
+}
+
+.confirm h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+.confirm p {
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 footer {

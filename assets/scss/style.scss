@@ -6,10 +6,10 @@ body {
     background: #E3BAD5;
     width: 80%;
 
-    @media (max-width: 400px){
+    @media (max-width: 400px) {
         width: 100%;
     }
-    
+
 }
 
 // Formulaire inscription
@@ -22,26 +22,56 @@ body {
     & h1 {
         text-align: center;
     }
+
     & .container {
         display: flex;
         flex-direction: column;
         width: 30%;
         margin: 0 auto;
         margin-bottom: 1rem;
-        @media (max-width: 400px){
-        width: 60%;
+
+        @media (max-width: 400px) {
+            width: 60%;
+        }
+
+        & label {
+            font-weight: bold;
+        }
+
+        & input {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+
+        }
+        
+        & span {
+            color: red;
+            font-size: 1.2rem;
+            text-align: center;
         }
     }
-
-    & label {
+    
+    & #valider {
+        border-radius: 5px;
+        padding: 0.5rem;
+        background-color: #5C5792;
+        color: white;
         font-weight: bold;
     }
+}
 
-    & input {
-        border: 1px solid black;
-        border-radius: 5px;
-        padding: 10px;
+// Confirmation
 
+.confirm {
+    & h1 {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    & p {
+        text-align: center;
+        font-size: 1.5rem;
     }
 }
 
@@ -58,17 +88,13 @@ body {
 
 
 // Footer 
-footer{
+footer {
     border-top: 1px solid rgba(255, 255, 255, 0.356);
     text-align: center;
     background: rgba(255, 255, 255, 0.342);
+
     & a {
         text-decoration: none;
         color: rgb(0, 0, 0);
     }
 }
-
-
-
-
-
