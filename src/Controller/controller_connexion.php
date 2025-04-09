@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             if (password_verify($_POST['mot_de_passe'], $user['use_mdp'])) {
                 $_SESSION = $user;
-                header('Location: controller_profil.php');
+                header('Location: controller_afficherToutproduits.php');
                 exit;
             } else {
                 $error['connexion'] = 'Email ou Mot de passe incorrect';

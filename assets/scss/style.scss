@@ -1,10 +1,23 @@
-// Body
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+// BODY
 body {
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
     background: #E3BAD5;
     width: 80%;
+    
+    & h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', sans-serif;
+        color: #211A44;
+    }
+
+    & p {
+        font-family: 'Raleway', sans-serif;
+        color: #211A44;
+    }
 
     @media (max-width: 400px) {
         width: 100%;
@@ -12,7 +25,7 @@ body {
 
 }
 
-// Formulaire inscription
+// FORMULAIRE INSCRIPTION
 #inscriptionF {
     display: flex;
     flex-direction: column;
@@ -44,14 +57,14 @@ body {
             padding: 10px;
 
         }
-        
+
         & span {
             color: red;
             font-size: 1.2rem;
             text-align: center;
         }
     }
-    
+
     & #valider {
         border-radius: 5px;
         padding: 0.5rem;
@@ -61,7 +74,7 @@ body {
     }
 }
 
-// Confirmation
+// CONFIRMATION
 .confirm {
     & h1 {
         text-align: center;
@@ -74,7 +87,7 @@ body {
     }
 }
 
-// Connexion
+// CONNEXION
 #connexionC {
     display: flex;
     flex-direction: column;
@@ -87,6 +100,7 @@ body {
         width: 30%;
         margin: 0 auto;
         margin-bottom: 1rem;
+
         @media (max-width: 400px) {
             width: 60%;
         }
@@ -102,23 +116,131 @@ body {
         }
 
         & input {
-        border: 1px solid black;
-        border-radius: 5px;
-        padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
         }
     }
-    
+
     & #valider {
         border-radius: 5px;
         padding: 0.5rem;
         background-color: #5C5792;
         color: white;
         font-weight: bold;
-        }
+    }
 }
 
 .inscri {
     text-align: center;
+}
+
+// DECONNEXION 
+.containerD {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    & h1 {
+        text-align: center;
+        font-size: 3rem;
+        @media (max-width: 400px) {
+            font-size: 2rem;
+            
+        }
+    }
+
+    & p {
+        text-align: center;
+        font-size: 1.5rem;
+        @media (max-width: 400px) {
+            font-size: 1rem;
+            
+        }
+    }
+}
+
+// AFFICHER TOUT LES PRODUITS
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #211A44;
+    padding: 1rem;
+    color: white;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    & a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-right: 1rem;
+    }
+}
+
+.titleC {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #211A44;
+}
+
+
+
+.card {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+
+    .card-corp {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background-color: #BE9CC7;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    @media (max-width: 400px) {
+        width: 80%;
+        margin: 1rem auto;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    & img {
+        width: 50%;
+        border-radius: 10px;
+        margin-right: 1rem;
+        margin: 0 auto;
+    }
+
+    & h2,
+    & p {
+        text-align: center;
+    }
+
+    & h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    & .textC {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+
+
 }
 
 

@@ -1,9 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 body {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
   background: #E3BAD5;
   width: 80%;
+}
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  font-family: "Playfair Display", sans-serif;
+  color: #211A44;
+}
+body p {
+  font-family: "Raleway", sans-serif;
+  color: #211A44;
 }
 @media (max-width: 400px) {
   body {
@@ -103,6 +113,101 @@ body {
 
 .inscri {
   text-align: center;
+}
+
+.containerD {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.containerD h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+@media (max-width: 400px) {
+  .containerD h1 {
+    font-size: 2rem;
+  }
+}
+.containerD p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+@media (max-width: 400px) {
+  .containerD p {
+    font-size: 1rem;
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #211A44;
+  padding: 1rem;
+  color: white;
+}
+@media (max-width: 400px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.titleC {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #211A44;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.card .card-corp {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #BE9CC7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  flex-wrap: wrap;
+  text-align: center;
+}
+@media (max-width: 400px) {
+  .card {
+    width: 80%;
+    margin: 1rem auto;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.card img {
+  width: 50%;
+  border-radius: 10px;
+  margin-right: 1rem;
+  margin: 0 auto;
+}
+.card h2, .card p {
+  text-align: center;
+}
+.card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.card .textC {
+  font-size: 1.5rem;
+  margin-bottom: 0;
 }
 
 footer {

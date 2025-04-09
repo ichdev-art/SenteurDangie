@@ -26,5 +26,8 @@ include_once '../../templates/nav.php';
 </form>
 <div class="inscri">
     <p class="textnotcolor">Pas encore de compte ? <a href="./controller_inscription.php">Inscrivez-vous</a></p>
-    <?php include_once '../../templates/footer.php' ?>
+    <?php 
+    include_once '../../templates/footer.php';
+    include_once '../../templates/script.php';
+    ?>
 </div>

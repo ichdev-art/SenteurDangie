@@ -14,4 +14,3 @@
         <p><i class="fa-solid fa-copyright"></i> BoutiqueBougie</p>
     </footer>
 
-<script src="https://kit.fontawesome.com/8b462dcb6d.js" crossorigin="anonymous"></script>
