@@ -1,4 +1,4 @@
 <?php
 
-header('Location: src/Controller/controller_inscription.php');
+header('Location: src/Controller/controller_afficherToutproduits.php');
 exit;

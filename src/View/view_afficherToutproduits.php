@@ -9,27 +9,15 @@ include_once '../../templates/nav.php';
       Découvrez notre sélection de bougies Artisanale et végétales.
     </h3>
     <div class="card">
+      <?php foreach ($produit as $value) { ?>
       <div class="card-corp">
-        <a href="">
-          <img src="./assets/img/gourmandechocolat15e.jpg" alt="Bougie" />
+         <a href="">
+          <img src="../../assets/img/<?=$value['pro_img']?>" alt="Bougie" />
         </a>
-        <h2>Gourmande Chocolat</h2>
-        <p class="textC">Gourmande au senteur chocolat Artisanale</p>
+        <h2><?= $value['pro_nom'] ?></h2>
+        <p class="textC"><?= $value['pro_description']?></p>
       </div>
-      <div class="card-corp">
-        <a href="">
-          <img src="./assets/img/gourmandechocolat15e.jpg" alt="Bougie" />
-        </a>
-        <h2>Gourmande Chocolat</h2>
-        <p class="textC">Gourmande au senteur chocolat Artisanale</p>
-      </div>
-      <div class="card-corp">
-        <a href="">
-          <img src="./assets/img/gourmandechocolat15e.jpg" alt="Bougie" />
-        </a>
-        <h2>Gourmande Chocolat</h2>
-        <p class="textC">Gourmande au senteur chocolat Artisanale</p>
-      </div>
+          <?php } ?>
     </div>
 
     <?php 
