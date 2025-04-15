@@ -12,7 +12,7 @@ include_once '../../templates/nav.php';
         <p><?= $fmt->formatCurrency($produit[0]["pro_prix"], "EUR") ?></p>
         <p><?= $produit[0]['pro_quantité']?> en Stock</p>
         <p>
-        <?= $produit[0]['pro_description']?> Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis officia in fugit repudiandae. Voluptate dolorem atque pariatur doloribus velit omnis assumenda impedit exercitationem dolor. Porro id harum, libero labore voluptates inventore consectetur accusantium, molestias impedit ducimus amet laborum, minus exercitationem cumque eveniet assumenda adipisci. Facere dolorem fugit minima officiis dolores odit quas saepe dolor vitae qui, cumque quae nisi sapiente!
+        <?= $produit[0]['pro_description']?>
         </p>
       </div>
     </div>
