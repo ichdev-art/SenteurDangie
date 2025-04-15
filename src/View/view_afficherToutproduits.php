@@ -11,11 +11,12 @@ include_once '../../templates/nav.php';
     <div class="card">
       <?php foreach ($produit as $value) { ?>
       <div class="card-corp">
-         <a href="">
+         <a href="../Controller/controller_afficherProduits.php?produit=<?= $value['pro_id']?>">
           <img src="../../assets/img/<?=$value['pro_img']?>" alt="Bougie" />
         </a>
         <h2><?= $value['pro_nom'] ?></h2>
         <p class="textC"><?= $value['pro_description']?></p>
+        <p class="prix"><?= $fmt->formatCurrency($value["pro_prix"], "EUR") ?></p>
       </div>
           <?php } ?>
     </div>
