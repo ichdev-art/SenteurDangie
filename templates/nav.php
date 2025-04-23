@@ -1,9 +1,8 @@
 
 <nav>
       <div class="left">
-        <a href="">Accueil</a>
-        <a href="">Produits</a>
-        <a href="">Commandes</a>
+        <a href="/src/Controller/controller_afficherToutproduits.php">Accueil</a>
+        <a href="/src/Controller/controller_commande.php">Commandes</a>
       </div>
       <div class="right">
         <a href="../Controller/controller_connexion.php"><i class="fa-solid fa-user"></i> Connexion</a>

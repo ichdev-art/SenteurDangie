@@ -212,8 +212,20 @@ nav a {
   margin-bottom: 0.5rem;
 }
 .card .textC {
-  font-size: 1.5rem;
-  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.5em;
+  margin-bottom: 0.5rem;
+}
+.card .more-link {
+  color: #5e2a84;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 .card .prix {
   font-weight: bold;
@@ -223,6 +235,14 @@ nav a {
   font-style: italic;
   font-weight: bold;
   font-size: 1.2rem;
+}
+.card .btn-ajouter {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .affiche {
@@ -304,6 +324,51 @@ h2.titlep {
 }
 .cardavis .group .date {
   font-weight: normal;
+}
+
+.commande-card {
+  background: #FFF;
+  border-radius: 16px;
+  padding: 1.2rem;
+  margin: 1.2rem auto;
+  box-shadow: 0 4px 10px rgba(33, 26, 68, 0.1);
+  border-left: 8px solid #BE9CC7;
+}
+.commande-card .commande-header h3 {
+  color: #5C5792;
+  margin-bottom: 0.9rem;
+}
+
+.commande-produits {
+  border-top: 1px solid #BE9CC7;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+}
+.commande-produits .produit {
+  display: flex;
+  gap: 1.9rem;
+  margin-bottom: 1.9rem;
+}
+.commande-produits .produit .dateLivraison {
+  font-size: 1.5rem;
+}
+.commande-produits .produit img {
+  width: 3.75rem;
+  height: 3.75rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #9F8DC3;
+}
+.commande-produits .infos .nom {
+  font-weight: bold;
+  color: #211A44;
+}
+
+.commande-footer {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #5C5792;
 }
 
 footer {

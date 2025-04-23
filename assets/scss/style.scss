@@ -243,8 +243,21 @@ nav {
     }
 
     & .textC {
-        font-size: 1.5rem;
-        margin-bottom: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 4.5em;
+        margin-bottom: 0.5rem;
+    }
+
+    & .more-link {
+        color: #5e2a84;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 0.5rem;
     }
 
     & .prix {
@@ -258,8 +271,16 @@ nav {
         font-size: 1.2rem;
     }
 
-
+    & .btn-ajouter {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }
+
 
 
 // AFFICHER UN SEUL PRODUIT
@@ -300,18 +321,20 @@ nav {
         }
     }
 }
+
 h2.titlep {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0;
-        color: #211A44;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    color: #211A44;
 
-        @media (max-width: 400px) {
-            font-size: 1.5rem;
+    @media (max-width: 400px) {
+        font-size: 1.5rem;
 
-        }
+    }
 }
+
 .cardavis {
     background-color: rgba(255, 255, 255, 0.445);
     border-radius: 10px;
@@ -352,15 +375,57 @@ h2.titlep {
     }
 }
 
+// Page de commande
+
+.commande-card {
+    background: #FFF;
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin: 1.2rem auto;
+    box-shadow: 0 4px 10px rgba(33, 26, 68, 0.1);
+    border-left: 8px solid #BE9CC7;
 
 
+    & .commande-header h3 {
+        color: #5C5792;
+        margin-bottom: 0.9rem;
+    }
+}
+
+.commande-produits {
+    border-top: 1px solid #BE9CC7;
+    margin-top: 1.1rem;
+    padding-top: 1.1rem;
 
 
+    & .produit {
+        display: flex;
+        gap: 1.9rem;
+        margin-bottom: 1.9rem;
+        & .dateLivraison{
+            font-size: 1.5rem;
+        }
+    }
 
+    & .produit img {
+        width: 3.75rem;
+        height: 3.75rem;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid #9F8DC3;
+    }
 
+    & .infos .nom {
+        font-weight: bold;
+        color: #211A44;
+    }
+}
 
-
-
+.commande-footer {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #5C5792;
+}
 
 
 

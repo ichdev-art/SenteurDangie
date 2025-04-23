@@ -11,6 +11,6 @@
         </p>
         <p>Contact : ichem76610@hotmail.com</p>
 
-        <p><i class="fa-solid fa-copyright"></i> BoutiqueBougie</p>
+        <p><i class="fa-solid fa-copyright"></i> Boutique Bougie</p>
     </footer>
 

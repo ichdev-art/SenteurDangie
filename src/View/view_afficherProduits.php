@@ -16,6 +16,7 @@ include_once '../../templates/nav.php';
         </p>
       </div>
     </div>
+    <?php if (!empty($produit[0]['avi_description'])) { ?>
 <h2 class="titlep">Avis</h2>
     <div class="cardavis">
       <?php foreach ($produit as  $value) { ?>
@@ -30,15 +31,8 @@ include_once '../../templates/nav.php';
       </div>
     <?php } ?>
     </div>
-      
-
-
-
-
-
-
-
-
+    <?php } ?>
+    
 
 <?php 
     include_once '../../templates/footer.php';

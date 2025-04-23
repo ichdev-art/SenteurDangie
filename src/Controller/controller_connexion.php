@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
 
-        $sql = 'SELECT use_mail,use_mdp from 76_users where use_mail = :mail';
+        $sql = 'SELECT use_id,use_nom,use_prenom,use_mail,use_mdp from 76_users where use_mail = :mail';
 
         $stmt = $pdo->prepare($sql);
 
@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $pdo = '';
     }
-    var_dump($_SESSION);
 } 
 
 include_once '../View/view_connexion.php';
