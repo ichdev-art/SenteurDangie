@@ -247,7 +247,7 @@ nav a {
 
 .affiche {
   display: flex;
-  justify-content: start;
+  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 2rem;
 }
@@ -333,6 +333,9 @@ h2.titlep {
   margin: 1.2rem auto;
   box-shadow: 0 4px 10px rgba(33, 26, 68, 0.1);
   border-left: 8px solid #BE9CC7;
+}
+.commande-card .commande-header .command {
+  border-top: 1px solid #BE9CC7;
 }
 .commande-card .commande-header h3 {
   color: #5C5792;

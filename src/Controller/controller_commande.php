@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 require_once '../../config.php';
@@ -8,5 +8,8 @@ if (!isset($_SESSION['use_id'])) {
     header('Location: controller_connexion.php');
     exit;
 }
+
+$fmt = new NumberFormatter('fr_FR', NumberFormatter::CURRENCY);
+$command = Produits::afficheCommande();
 
 include_once '../View/view_commande.php';

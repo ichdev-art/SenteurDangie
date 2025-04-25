@@ -56,17 +56,83 @@ class Produits
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'SELECT com_id,com_dateCommande,com_dateLivraison,com_quantitéCommande,pro_nom,pro_img,pro_prix 
-        FROM 76_commande c 
-        NATURAL JOIN 76_produits 
-        WHERE pro_id = :pro_id';
+        $sql = 'SELECT 
+                    u.use_id,
+                    u.use_nom,
+                    u.use_prenom,
+                    u.use_mail,
+                    c.com_id,
+                    c.com_dateCommande,
+                    c.com_dateLivraison,
+                    p.pro_nom,
+                    p.pro_description,
+                    p.pro_prix,
+                    p.pro_img,
+                    cl.comlig_quantité
+                FROM 76_commande c
+                JOIN 76_users u ON c.use_id = u.use_id
+                JOIN 76_commande_ligne cl ON c.com_id = cl.com_id
+                JOIN 76_produits p ON cl.pro_id = p.pro_id
+                where u.use_id = :use_id';
 
         $stmt = $pdo->prepare($sql);
 
+        $stmt->bindValue(':use_id', $_SESSION['use_id'], PDO::PARAM_STR);
+
         $stmt->execute();
 
-        $command = $stmt->fetch(PDO::FETCH_ASSOC);
+        $command = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $command;
+        foreach ($command as &$value) {
+            if (isset($value['com_dateCommande'])) {
+                $date = new DateTimeImmutable($value['com_dateCommande']);
+                $dateL = new DateTimeImmutable($value['com_dateLivraison']);
+                $value['com_dateLivraison'] = $dateL->format('d F Y');
+                $value['com_dateCommande'] = $date->format('d F Y');
+            }
+        }
+        unset($value);
+
+        // Créer un tableau pour stocker les commandes et les produits associés
+
+        $commandes = [];
+
+        // Parcourir les résultats et regrouper les produits par commande et calculer le total de chaque commande
+
+        foreach ($command as $row) {
+
+            // Vérifier si la commande existe déjà dans le tableau sinon, l'ajouter
+
+            $com_id = $row['com_id'];
+            if (!isset($commandes[$com_id])) {
+
+                // Créer une nouvelle entrée pour la commande avec les informations de la commande et un tableau vide pour les produits et le total initialisé à 0
+
+                $commandes[$com_id] = [
+                    'com_id' => $com_id,
+                    'com_dateCommande' => $row['com_dateCommande'],
+                    'com_dateLivraison' => $row['com_dateLivraison'],
+                    'produits' => [],
+                    'total' => 0
+                ];
+            }
+
+            // Ajouter le produit à la commande et calculer le total de la commande
+
+            $commandes[$com_id]['produits'][] = [
+                'pro_nom' => $row['pro_nom'],
+                'pro_description' => $row['pro_description'],
+                'pro_prix' => $row['pro_prix'],
+                'pro_img' => $row['pro_img'],
+                'comlig_quantité' => $row['comlig_quantité']
+            ];
+
+            // Calculer le total de la commande en multipliant le prix du produit par la quantité
+
+            $commandes[$com_id]['total'] += $row['pro_prix'] * $row['comlig_quantité'];
+        }
+
+        // Réinitialiser les clés du tableau pour qu'elles soient continues
+        return $commandes;
     }
 }
