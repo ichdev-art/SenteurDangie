@@ -31,7 +31,7 @@ include_once '../../templates/navAdmin.php';
           <td><?= $value['pro_img'] ?></td>
           <td>
             <a href="" class="modif">Modifier</a>
-            <a href="" class="supprim">Supprimer</a>
+            <a href="../Controller/controller_suppressionC.php?produit=<?= $value['pro_id'] ?>" class="supprim">Supprimer</a>
           </td>
         </tr> 
         <?php } ?>

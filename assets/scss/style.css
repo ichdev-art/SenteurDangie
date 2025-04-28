@@ -451,7 +451,8 @@ h2.titlep {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.admin-panel .produits-table th, .admin-panel .produits-table td {
+.admin-panel .produits-table th,
+.admin-panel .produits-table td {
   padding: 1rem;
   text-align: left;
   border-bottom: 1px solid #eee;
@@ -473,6 +474,18 @@ h2.titlep {
   border: none;
   text-decoration: none;
   cursor: pointer;
+}
+
+.admin-panell {
+  text-align: center;
+}
+.admin-panell .panel-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin-panell .panel-header h1 {
+  font-size: 2rem;
 }
 
 footer {

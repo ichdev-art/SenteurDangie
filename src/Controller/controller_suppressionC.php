@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -7,14 +7,9 @@ if (!isset($_SESSION['adm_id'])) {
     exit;
 }
 
-
 require_once '../../config.php';
 require_once '../Model/model_produit.php';
 
+$produit = Produits::deleteProduit();
 
-$fmt = new NumberFormatter('fr_FR', NumberFormatter::CURRENCY);
-$produit = Produits::afficherProduit();
-
-
-
-include_once '../View/view_produitAdmin.php';
+include_once '../View/view_suppressionC.php';
