@@ -572,6 +572,96 @@ h2.titlep {
     }
 }
 
+
+// MODIFIER UN PRODUIT ADMIN
+// MODIFIER UN PRODUIT ADMIN
+.modifier-produit {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+
+    .modifier-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+
+        h1 {
+            font-size: 2rem;
+            color: #211A44;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-weight: bold;
+            color: #5C5792;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+
+            &:focus {
+                border-color: #3490dc;
+                outline: none;
+                box-shadow: 0 0 5px rgba(52, 144, 220, 0.5);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: #218838;
+            }
+        }
+    }
+
+    .modif-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+
+        .retour-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #e3342f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: #c82333;
+            }
+        }
+    }
+}
+
+
 // AJOUTER UN PRODUIT ADMIN
 
 

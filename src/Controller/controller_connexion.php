@@ -3,7 +3,7 @@ require_once '../../config.php';
 
 session_start();
 
-if (!isset($_SESSION['use_id'])) {
+if (isset($_SESSION['use_id'])) {
     header('Location: controller_afficherToutproduits.php');
     exit;
 }

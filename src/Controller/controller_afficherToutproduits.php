@@ -9,7 +9,5 @@ $fmt = new NumberFormatter('fr_FR', NumberFormatter::CURRENCY);
 
 
 
-
-
 include_once '../View/view_afficherToutproduits.php';
 ?>

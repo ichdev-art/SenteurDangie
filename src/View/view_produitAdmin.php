@@ -27,10 +27,10 @@ include_once '../../templates/navAdmin.php';
           <td><?= $value['pro_nom'] ?></td>
           <td><?= $value['pro_description'] ?></td>
           <td><?= $fmt->formatCurrency($value["pro_prix"], "EUR") ?></td>
-          <td><?= $value['pro_quantité'] ?></td>
+          <td><?= $value['pro_quantite'] ?></td>
           <td><?= $value['pro_img'] ?></td>
           <td>
-            <a href="" class="modif">Modifier</a>
+            <a href="../Controller/controller_modifProduitAdmin.php?produit=<?= $value['pro_id']?>" class="modif">Modifier</a>
             <a href="../Controller/controller_suppressionC.php?produit=<?= $value['pro_id'] ?>" class="supprim">Supprimer</a>
           </td>
         </tr> 

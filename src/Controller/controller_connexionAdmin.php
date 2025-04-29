@@ -3,7 +3,7 @@ require_once '../../config.php';
 
 session_start();
 
-if (!isset($_SESSION['adm_id'])) {
+if (isset($_SESSION['adm_id'])) {
     header('Location: controller_produitAdmin.php');
     exit;
 }

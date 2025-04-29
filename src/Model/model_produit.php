@@ -1,12 +1,18 @@
 <?php
 class Produits
 {
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
     public static function afficherProduit()
     {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'SELECT pro_nom,pro_img,pro_description,pro_prix,pro_quantité,pro_id 
+        $sql = 'SELECT pro_nom,pro_img,pro_description,pro_prix,pro_quantite,pro_id 
         from `76_produits`';
 
         $stmt = $pdo->prepare($sql);
@@ -19,12 +25,18 @@ class Produits
         return $bougieProduit;
     }
 
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
     public static function afficherUnProduit()
     {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'SELECT pro_nom,pro_img,pro_description,pro_prix,pro_quantité,avi_description,avi_date,use_nom,use_prenom 
+        $sql = 'SELECT pro_nom,pro_img,pro_description,pro_prix,pro_quantite,avi_description,avi_date,use_nom,use_prenom 
         from `76_produits` p
         left join `76_avis` a on p.pro_id = a.pro_id
         left join `76_users` u on a.use_id = u.use_id
@@ -34,7 +46,7 @@ class Produits
         $date->format('d-m-Y');
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':pro_id', $_GET['produit'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_id', $_GET['produit'], PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -51,6 +63,12 @@ class Produits
         return $bougieProduitUn;
     }
 
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
     public static function afficheCommande()
     {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
@@ -68,7 +86,7 @@ class Produits
                     p.pro_description,
                     p.pro_prix,
                     p.pro_img,
-                    cl.comlig_quantité
+                    cl.comlig_quantite
                 FROM 76_commande c
                 JOIN 76_users u ON c.use_id = u.use_id
                 JOIN 76_commande_ligne cl ON c.com_id = cl.com_id
@@ -77,7 +95,7 @@ class Produits
 
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':use_id', $_SESSION['use_id'], PDO::PARAM_STR);
+        $stmt->bindValue(':use_id', $_SESSION['use_id'], PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -124,18 +142,24 @@ class Produits
                 'pro_description' => $row['pro_description'],
                 'pro_prix' => $row['pro_prix'],
                 'pro_img' => $row['pro_img'],
-                'comlig_quantité' => $row['comlig_quantité']
+                'comlig_quantite' => $row['comlig_quantite']
             ];
 
-            // Calculer le total de la commande en multipliant le prix du produit par la quantité
+            // Calculer le total de la commande en multipliant le prix du produit par la quantite
 
-            $commandes[$com_id]['total'] += $row['pro_prix'] * $row['comlig_quantité'];
+            $commandes[$com_id]['total'] += $row['pro_prix'] * $row['comlig_quantite'];
         }
 
         // Réinitialiser les clés du tableau pour qu'elles soient continues
         return $commandes;
     }
 
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
     public static function deleteProduit()
     {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
@@ -145,9 +169,92 @@ class Produits
 
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':pro_id', $_GET['produit'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_id', $_GET['produit'], PDO::PARAM_INT);
 
         $stmt->execute();
     }
 
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
+    public static function modifierProduit()
+    {
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE `76_produits` 
+                SET `pro_nom`=:pro_nom,
+                `pro_description`=:pro_description,
+                `pro_prix`=:pro_prix,
+                `pro_quantite`=:pro_quantite
+                WHERE `pro_id`=:pro_id;';
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':pro_nom', $_POST['nom'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_description', $_POST['description'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_prix', $_POST['prix'], PDO::PARAM_INT);
+        $stmt->bindValue(':pro_quantite', $_POST['quantite'], PDO::PARAM_INT);
+        $stmt->bindValue(':pro_id', $_GET['produit'], PDO::PARAM_INT);
+
+        $stmt->execute();
+        header('Location: controller_produitAdmin.php');
+        exit;
+
+    }
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
+    public static function avoirProduitParId()
+    {
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT * FROM `76_produits` WHERE pro_id = :pro_id';
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':pro_id', $_GET['produit'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $produit = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $produit;
+    }
+
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
+    public static function ajouterProduit()
+    {
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'INSERT INTO `76_produits` (`pro_nom`, `pro_description`, `pro_prix`, `pro_quantite`, `pro_img`) 
+                VALUES (:pro_nom, :pro_description, :pro_prix, :pro_quantite, :pro_img);';
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':pro_nom', $_POST['nom'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_description', $_POST['description'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_prix', $_POST['prix'], PDO::PARAM_INT);
+        $stmt->bindValue(':pro_quantite', $_POST['quantite'], PDO::PARAM_INT);
+        $stmt->bindValue(':pro_img', $_POST['img'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return true;
+    }
 }
