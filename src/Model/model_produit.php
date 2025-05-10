@@ -238,6 +238,19 @@ class Produits
      */
     public static function ajouterProduit()
     {
+
+        if (!isset($_FILES['img']) || $_FILES['img']['error'] !== 0) {
+            // Erreur d'upload
+            return 'Erreur de téléchargement de l\'image.';
+        }
+
+        // Vérification du type de fichier (tu peux ajuster selon les types que tu veux accepter)
+        $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($_FILES['img']['type'], $allowed)) {
+            return 'Type de fichier non valide. Seules les images JPG, PNG et GIF sont autorisées.';
+        }
+
+
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -246,7 +259,12 @@ class Produits
         $fileTmpName = $_FILES['img']['tmp_name'];
 
         // Déplacement du fichier
-        move_uploaded_file($fileTmpName, '../../assets/img/' . $fileName);
+        $filePath = '../../assets/img/' . $fileName;
+        if (!move_uploaded_file($fileTmpName, $filePath)) {
+            // Erreur lors du déplacement du fichier
+            return 'Erreur lors de l\'upload de l\'image.';
+        }
+
 
         // Préparation de la requête d'insertion
         $sql = 'INSERT INTO `76_produits` (`pro_nom`, `pro_description`, `pro_prix`, `pro_quantite`, `pro_img`) 

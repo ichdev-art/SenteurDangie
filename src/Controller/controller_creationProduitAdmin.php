@@ -36,24 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error['quantite'] = 'Quantité non valide';
         }
     }
-
-    if (isset($_FILES['img'])) {
-        if ($_FILES['img']['error'] == 0) {
-            $allowed = ['image/jpeg', 'image/png', 'image/gif'];
-            if (!in_array($_FILES['img']['type'], $allowed)) {
-                $error['image'] = 'Type de fichier non valide';
-            } else {
-                $fileName = $fileName = uniqid() . '_' . $_FILES['img']['name'];;
-                $fileTmpName = $_FILES['img']['tmp_name'];
-                move_uploaded_file($fileTmpName, '../../assets/img/' . $fileName);
-            }
-        } else {
-            $error['image'] = 'Erreur de téléchargement';
-        } 
-    } else {
-            $error['image'] = 'Image obligatoire';
-        }
-
+    
+    $resultat = Produits::ajouterProduit();
+    if ($resultat !== true) {
+        $error['image'] = $resultat;    
+    }
+  
         if (empty($error)) {
             // Appel de la méthode pour ajouter le produit
             $produit = Produits::ajouterProduit();
