@@ -8,7 +8,7 @@ include_once '../../templates/navAdmin.php';
 <div class="admin-panel">
   <div class="panel-header">
     <h1>Gestion des Produits</h1>
-    <button class="ajoute-button">Ajouter un produit</button>
+    <a href="../Controller/controller_creationProduitAdmin.php" class="ajoute-button">Ajouter un produit</a>
   </div>
   <table class="produits-table">
     <thead>

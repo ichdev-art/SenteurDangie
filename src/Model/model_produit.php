@@ -203,7 +203,6 @@ class Produits
         $stmt->execute();
         header('Location: controller_produitAdmin.php');
         exit;
-
     }
 
     /**
@@ -240,8 +239,16 @@ class Produits
     public static function ajouterProduit()
     {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Génération du nom de fichier unique
+        $fileName = uniqid() . '_' . $_FILES['img']['name'];
+        $fileTmpName = $_FILES['img']['tmp_name'];
+
+        // Déplacement du fichier
+        move_uploaded_file($fileTmpName, '../../assets/img/' . $fileName);
+
+        // Préparation de la requête d'insertion
         $sql = 'INSERT INTO `76_produits` (`pro_nom`, `pro_description`, `pro_prix`, `pro_quantite`, `pro_img`) 
                 VALUES (:pro_nom, :pro_description, :pro_prix, :pro_quantite, :pro_img);';
 
@@ -251,7 +258,7 @@ class Produits
         $stmt->bindValue(':pro_description', $_POST['description'], PDO::PARAM_STR);
         $stmt->bindValue(':pro_prix', $_POST['prix'], PDO::PARAM_INT);
         $stmt->bindValue(':pro_quantite', $_POST['quantite'], PDO::PARAM_INT);
-        $stmt->bindValue(':pro_img', $_POST['img'], PDO::PARAM_STR);
+        $stmt->bindValue(':pro_img', $fileName, PDO::PARAM_STR);
 
         $stmt->execute();
 

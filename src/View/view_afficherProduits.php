@@ -10,7 +10,7 @@ include_once '../../templates/nav.php';
       <div class="cadre">
         <h2><?= $produit[0]['pro_nom']?></h2>
         <p><?= $fmt->formatCurrency($produit[0]["pro_prix"], "EUR") ?></p>
-        <p><?= $produit[0]['pro_quantité']?> en Stock</p>
+        <p><?= $produit[0]['pro_quantite']?> en Stock</p>
         <p>
         <?= $produit[0]['pro_description']?>
         </p>
