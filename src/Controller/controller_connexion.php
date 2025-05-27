@@ -13,7 +13,7 @@ $error = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['email'])) {
         if (empty($_POST['email'])) {
-            $error['email'] = 'Email ou pseudo obligatoire';
+            $error['email'] = 'Email obligatoire';
         }
     }
     if (isset($_POST['mot_de_passe'])) {

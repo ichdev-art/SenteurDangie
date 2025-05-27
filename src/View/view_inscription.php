@@ -6,80 +6,71 @@ include_once '../../templates/nav.php';
 ?>
 
 <body>
-  <form id="inscriptionF" action="" method="POST" novalidate>
-    <h1>Senteur D'angie</h1>
-    <div class="container">
-      <label for="nom">Nom : </label><span><?= $error['nom'] ?? '' ?></span>
-      <input type="text" name="nom" placeholder="Ex : Dubois" id="nom" value="" required />
+  <form id="inscriptionF" method="POST" novalidate>
+  <h1 class="form-title">Senteur D'angie</h1>
 
-    </div>
-    <div class="container">
-      <label for="prenom">Prénom :</label><span><?= $error['prenom'] ?? '' ?></span>
-      <input
-        type="text"
-        name="prenom"
-        id="prenom"
-        value=""
-        placeholder="Ex : Pierre"
-        required />
-    </div>
+  <div class="form-group">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom" placeholder="Ex : Dubois" value="<?= $_POST['nom'] ?? '' ?>" required>
+    <span class="error"><?= $error['nom'] ?? '' ?></span>
+  </div>
 
-    <div class="container">
-      <label for="mail">E-mail : </label><span><?= $error['email'] ?? '' ?></span>
+  <div class="form-group">
+    <label for="prenom">Prénom</label>
+    <input type="text" id="prenom" name="prenom" placeholder="Ex : Pierre" value="<?= $_POST['prenom'] ?? '' ?>" required>
+    <span class="error"><?= $error['prenom'] ?? '' ?></span>
+  </div>
 
-      <input
-        type="email"
-        name="email"
-        id="mail"
-        value=""
-        placeholder="Ex : Pierre.durand@gmail.com"
-        required />
-    </div>
+  <div class="form-group">
+    <label for="mail">Email</label>
+    <input type="email" id="mail" name="email" placeholder="Ex : pierre.durand@gmail.com" value="<?= $_POST['email'] ?? '' ?>" required>
+    <span class="error"><?= $error['email'] ?? '' ?></span>
+  </div>
 
-    <div class="container">
-      <label for="mdp">Mot de passe : </label><span><?= $error['mot_de_passe'] ?? '' ?></span>
+  <div class="form-group">
+    <label for="mdp">Mot de passe</label>
+    <input type="password" id="mdp" name="mot_de_passe" required>
+    <span class="error"><?= $error['mot_de_passe'] ?? '' ?></span>
+  </div>
 
-      <input type="password" name="mot_de_passe" id="mdp" required />
+  <div class="form-group">
+    <label for="c_mdp">Confirmation du mot de passe</label>
+    <input type="password" id="c_mdp" name="confirmation_mdp" required>
+    <span class="error"><?= $error['confirmation_mdp'] ?? '' ?></span>
+  </div>
 
-    </div>
+  <div class="form-group">
+    <label for="adresse">Adresse</label>
+    <input type="text" id="adresse" name="adresse" placeholder="Ex : 3 rue du Pont XI" value="<?= $_POST['adresse'] ?? '' ?>" required>
+    <span class="error"><?= $error['adresse'] ?? '' ?></span>
+  </div>
 
-    <div class="container">
-      <label for="c_mdp">Confirmation mot de passe : </label><span><?= $error['confirmation_mdp'] ?? '' ?></span>
+  <div class="form-group">
+    <label for="cP">Code postal</label>
+    <input type="number" id="cP" name="codePostal" placeholder="Ex : 76620" value="<?= $_POST['codePostal'] ?? '' ?>" required>
+    <span class="error"><?= $error['codePostal'] ?? '' ?></span>
+  </div>
 
-      <input type="password" name="confirmation_mdp" id="c_mdp" required />
-    </div>
+  <div class="form-group">
+    <label for="ville">Ville</label>
+    <input type="text" id="ville" name="ville" placeholder="Ex : Le Havre" value="<?= $_POST['ville'] ?? '' ?>" required>
+    <span class="error"><?= $error['ville'] ?? '' ?></span>
+  </div>
 
-    <div class="container">
-      <label for="adresse"> Adresse : </label><span><?= $error['adresse'] ?? '' ?></span>
+  <div class="form-group checkbox">
+    <input type="checkbox" id="cU" name="condition" required>
+    <label for="cU">J'accepte les conditions d'utilisation</label>
+    <span class="error"><?= $error['condition'] ?? '' ?></span>
+  </div>
 
-      <input type="text" name="adresse" placeholder="Ex : 3 rue du pont XI" id="adresse" value="" required />
-    </div>
+  <div class="form-group">
+    <input type="submit" value="Valider" id="valider">
+  </div>
 
-    <div class="container">
-      <label for="cP">Code postal : </label><span><?= $error['codePostal'] ?? '' ?></span>
-
-      <input type="number" name="codePostal" placeholder="Ex : 76620" id="cP" value="" required />
-    </div>
-
-    <div class="container">
-      <label for="ville">Ville :</label><span><?= $error['ville'] ?? '' ?></span>
-
-      <input type="text" name="ville" placeholder="Ex : Le Havre" id="ville" value="" required />
-      <p></p>
-    </div>
-
-    <div class="container">
-      <label for="cU">Conditions d'utilisation : </label><span><?= $error['condition'] ?? '' ?></span>
-
-      <input type="checkbox" name="condition" id="cU" required />
-    </div>
-
-    <input type="submit" value="Valider" id="valider" />
-    <p>
-      Déjà un compte ?
-      <a href="../Controller/controller_connexion.php">Connectez-vous</a>
-    </p>
-  </form>
+  <p class="textnotcolor">
+    Déjà un compte ? <a href="../Controller/controller_connexion.php">Connectez-vous</a>
+  </p>
+</form>
 
   <?php 
   include_once '../../templates/footer.php';

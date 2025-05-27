@@ -1,11 +1,19 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --color-primary: #2C234D;
+  --color-secondary: #C5B4E3;
+  --color-accent: #E7C6D7;
+  --color-background: #FAF6FF;
+  --color-text: #3A2E4F;
+}
+
 body {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  background: #E3BAD5;
+  background: var(--color-background);
+  color: var(--color-text);
   width: 80%;
 }
 body h1,
@@ -28,45 +36,80 @@ body p {
 }
 
 #inscriptionF {
+  max-width: 500px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+#inscriptionF .form-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #211A44;
+}
+#inscriptionF .form-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+#inscriptionF .form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+#inscriptionF .form-group input[type=text],
+#inscriptionF .form-group input[type=email],
+#inscriptionF .form-group input[type=password],
+#inscriptionF .form-group input[type=number] {
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+#inscriptionF .form-group input[type=text]:focus,
+#inscriptionF .form-group input[type=email]:focus,
+#inscriptionF .form-group input[type=password]:focus,
+#inscriptionF .form-group input[type=number]:focus {
+  outline: none;
+  border-color: #5C5792;
+  box-shadow: 0 0 5px rgba(92, 87, 146, 0.3);
+}
+#inscriptionF .form-group.checkbox {
+  flex-direction: row;
   align-items: center;
 }
-#inscriptionF h1 {
-  text-align: center;
+#inscriptionF .form-group.checkbox input[type=checkbox] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
 }
-#inscriptionF .container {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin: 0 auto;
-  margin-bottom: 1rem;
+#inscriptionF .form-group.checkbox label {
+  margin: 0;
+  font-weight: normal;
 }
-@media (max-width: 400px) {
-  #inscriptionF .container {
-    width: 60%;
-  }
-}
-#inscriptionF .container label {
-  font-weight: bold;
-}
-#inscriptionF .container input {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-}
-#inscriptionF .container span {
-  color: red;
-  font-size: 1.2rem;
-  text-align: center;
+#inscriptionF .form-group .error {
+  font-size: 0.875rem;
+  color: #BE1E2D;
+  margin-top: 0.3rem;
 }
 #inscriptionF #valider {
+  width: 100%;
+  background-color: #211A44;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#inscriptionF #valider:hover {
   background-color: #5C5792;
-  color: white;
-  font-weight: bold;
+}
+#inscriptionF .textnotcolor {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
 }
 
 .confirm h1 {
@@ -79,46 +122,63 @@ body p {
 }
 
 #connexionC {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 400px;
+  margin: 5rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-#connexionC .label {
+#connexionC .form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #211A44;
+  margin-bottom: 2rem;
+}
+#connexionC .form-group {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+#connexionC .form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+#connexionC .form-group input[type=email],
+#connexionC .form-group input[type=password] {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+#connexionC .form-group input[type=email]:focus,
+#connexionC .form-group input[type=password]:focus {
+  outline: none;
+  border-color: #5C5792;
+  box-shadow: 0 0 5px rgba(92, 87, 146, 0.4);
+}
+#connexionC .form-group .error {
+  margin-top: 0.3rem;
+  font-size: 0.875rem;
+  color: #BE1E2D;
+}
+#connexionC .form-error {
+  color: #BE1E2D;
+  text-align: center;
   margin-bottom: 1rem;
 }
-@media (max-width: 400px) {
-  #connexionC .label {
-    width: 60%;
-  }
-}
-#connexionC .label label {
-  font-weight: bold;
-}
-#connexionC .label span {
-  color: red;
-  font-size: 1.2rem;
-  text-align: center;
-}
-#connexionC .label input {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-}
 #connexionC #valider {
-  border-radius: 5px;
-  padding: 0.5rem;
-  background-color: #5C5792;
+  background-color: #211A44;
   color: white;
-  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
-.inscri {
-  text-align: center;
+#connexionC #valider:hover {
+  background-color: #5C5792;
 }
 
 .containerD {
@@ -147,183 +207,160 @@ body p {
   }
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #211A44;
-  padding: 1rem;
-  color: white;
-}
-@media (max-width: 400px) {
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-nav a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-right: 1rem;
-}
-
-.titleC {
-  font-size: 1.5rem;
-  text-align: center;
-  color: #211A44;
-}
-
-.card {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-.card .card-corp {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background-color: #BE9CC7;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  flex-wrap: wrap;
-  text-align: center;
-}
-@media (max-width: 400px) {
-  .card {
-    width: 80%;
-    margin: 1rem auto;
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-.card img {
-  width: 50%;
-  border-radius: 10px;
-  margin-right: 1rem;
-  margin: 0 auto;
-}
-.card h2, .card p {
-  text-align: center;
-}
-.card h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-.card .textC {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.mtg-card-custom {
+  background-color: var(--color-secondary);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(44, 35, 77, 0.1);
+  transition: all 0.3s ease;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 4.5em;
-  margin-bottom: 0.5rem;
 }
-.card .more-link {
-  color: #5e2a84;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 0.5rem;
+.mtg-card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
-.card .prix {
-  font-weight: bold;
-  font-size: 1.5rem;
+.mtg-card-custom .card-img-top {
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 15px 15px 0 0;
 }
-.card .qte {
-  font-style: italic;
+.mtg-card-custom .card-body {
+  padding: 1rem;
+}
+.mtg-card-custom .btn {
+  border-radius: 30px;
   font-weight: bold;
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+.mtg-card-custom .prix {
   font-size: 1.2rem;
-}
-.card .btn-ajouter {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  margin: 0.5rem 0;
 }
 
-.affiche {
+.affiche-produit {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
 }
-.affiche h2 {
-  text-align: center;
-  font-size: 3rem;
-}
-@media (max-width: 400px) {
-  .affiche h2 {
-    font-size: 1.5rem;
+@media (min-width: 768px) {
+  .affiche-produit {
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
-.affiche p {
-  text-align: center;
-  font-size: 1.5rem;
+.affiche-produit .image-produit {
+  flex: 1;
 }
-@media (max-width: 400px) {
-  .affiche p {
-    font-size: 0.8rem;
-  }
+.affiche-produit .image-produit img {
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.affiche img {
-  width: 30%;
-  border-radius: 10px;
-  margin: 1rem;
+.affiche-produit .details-produit {
+  flex: 2;
+  padding: 1rem;
 }
-@media (max-width: 400px) {
-  .affiche img {
-    width: 40%;
-  }
-}
-
-h2.titlep {
-  text-align: center;
+.affiche-produit .details-produit h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  margin-top: 0;
   color: #211A44;
 }
-@media (max-width: 400px) {
-  h2.titlep {
-    font-size: 1.5rem;
-  }
+.affiche-produit .details-produit .prix {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5C5792;
+}
+.affiche-produit .details-produit .stock {
+  margin: 0.5rem 0;
+  color: #666;
+}
+.affiche-produit .details-produit .description {
+  margin-bottom: 1.5rem;
+}
+.affiche-produit .details-produit .btn-panier {
+  background-color: #211A44;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.affiche-produit .details-produit .btn-panier:hover {
+  background-color: #5C5792;
+}
+.affiche-produit .details-produit .badge-nouveaute {
+  display: inline-block;
+  background-color: #BE9CC7;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+.affiche-produit .details-produit .note-produit {
+  font-size: 1.1rem;
+  color: #E3BAD5;
+  margin-bottom: 1rem;
+}
+.affiche-produit .details-produit .quantite-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.affiche-produit .details-produit .quantite-wrapper input {
+  width: 60px;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ccc;
+}
+.affiche-produit .details-produit .arguments {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+.affiche-produit .details-produit .arguments li {
+  margin-bottom: 0.5rem;
+  color: #5C5792;
+}
+
+.titlep {
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  color: #211A44;
 }
 
 .cardavis {
-  background-color: rgba(255, 255, 255, 0.445);
-  border-radius: 10px;
-  padding: 1rem;
-  padding-top: 0;
-  margin-bottom: 1rem;
-  height: 18rem;
-  overflow: auto;
-  /* Scrollbar personnalisée */
-}
-.cardavis::-webkit-scrollbar {
-  width: 10px;
-}
-.cardavis::-webkit-scrollbar-track {
-  background: #f8e4f0;
-  border-radius: 10px;
-}
-.cardavis::-webkit-scrollbar-thumb {
-  background: #c38eb4;
-  border-radius: 10px;
-  border: 2px solid #f8e4f0;
-}
-.cardavis::-webkit-scrollbar-thumb:hover {
-  background: #a96896;
-}
-.cardavis .group {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
 }
-.cardavis .group .date {
-  font-weight: normal;
+.cardavis .avis {
+  background-color: #F9F9FF;
+  padding: 1rem;
+  border-left: 4px solid #5C5792;
+  border-radius: 0.5rem;
+}
+.cardavis .avis .group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.cardavis .avis .group h3 {
+  margin: 0;
+  font-weight: 600;
+}
+.cardavis .avis .group .date {
+  color: #888;
+  font-size: 0.9rem;
+}
+.cardavis .avis p {
+  margin: 0;
 }
 
 .commande-card {
@@ -640,6 +677,35 @@ h2.titlep {
 }
 .ajouter-produit .ajout-footer .retour-button:hover {
   background: #c82333;
+}
+
+.custom-navbar {
+  background-color: var(--color-primary);
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.custom-navbar .navbar-brand {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #FAF6FF;
+}
+.custom-navbar .navbar-brand:hover {
+  color: #ffffff;
+}
+.custom-navbar .nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  margin-left: 1rem;
+}
+.custom-navbar .nav-link:hover {
+  color: #e3bad5;
+}
+.custom-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+  background-color: #e3bad5;
+}
+.custom-navbar .navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 footer {

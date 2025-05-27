@@ -1,4 +1,4 @@
 <?php
 
-header('Location: src/Controller/controller_afficherToutproduits.php');
+header('Location: src/Controller/controller_connexion.php');
 exit;

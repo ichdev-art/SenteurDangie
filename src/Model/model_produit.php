@@ -36,7 +36,7 @@ class Produits
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'SELECT pro_nom,pro_img,pro_description,pro_prix,pro_quantite,avi_description,avi_date,use_nom,use_prenom 
+        $sql = 'SELECT p.pro_id,pro_nom,pro_img,pro_description,pro_prix,pro_quantite,avi_description,avi_date,use_nom,use_prenom 
         from `76_produits` p
         left join `76_avis` a on p.pro_id = a.pro_id
         left join `76_users` u on a.use_id = u.use_id
@@ -86,7 +86,7 @@ class Produits
                     p.pro_description,
                     p.pro_prix,
                     p.pro_img,
-                    cl.comlig_quantite
+                    cl.comlig_quantité
                 FROM 76_commande c
                 JOIN 76_users u ON c.use_id = u.use_id
                 JOIN 76_commande_ligne cl ON c.com_id = cl.com_id
@@ -142,12 +142,12 @@ class Produits
                 'pro_description' => $row['pro_description'],
                 'pro_prix' => $row['pro_prix'],
                 'pro_img' => $row['pro_img'],
-                'comlig_quantite' => $row['comlig_quantite']
+                'comlig_quantité' => $row['comlig_quantité']
             ];
 
             // Calculer le total de la commande en multipliant le prix du produit par la quantite
 
-            $commandes[$com_id]['total'] += $row['pro_prix'] * $row['comlig_quantite'];
+            $commandes[$com_id]['total'] += $row['pro_prix'] * $row['comlig_quantité'];
         }
 
         // Réinitialiser les clés du tableau pour qu'elles soient continues

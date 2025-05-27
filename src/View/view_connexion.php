@@ -5,29 +5,31 @@ include_once '../../templates/nav.php';
 
 ?>
 
-
 <form id="connexionC" method="POST" novalidate>
-    <h1>Senteur D'angie</h1>
-    <div class="label">
-        <label for="mail">Email :</label><span><?= $error['email'] ?? '' ?></span>
-        <input type="email" placeholder="Ex : Lebgdu76" name="email" id="mail" value="" required>
+  <h1 class="form-title">Senteur d'Angie</h1>
 
-    </div>
-    <div class="label">
-        <label for="mdp">Mot de passe :</label><span><?= $error['mot_de_passe'] ?? '' ?></span>
-        <input type="password" name="mot_de_passe" id="mdp" required>
+  <div class="form-group">
+    <label for="mail">Email</label>
+    <input type="email" id="mail" name="email" placeholder="exemple@domaine.com" required>
+    <span class="error"><?= $error['email'] ?? '' ?></span>
+  </div>
 
-    </div>
-    <div class="label">
-        <span><?= $error['connexion'] ?? '' ?></span>
-        <input type="submit" value="Se connecter" id="valider">
-        
-    </div>
+  <div class="form-group">
+    <label for="mdp">Mot de passe</label>
+    <input type="password" id="mdp" name="mot_de_passe" required>
+    <span class="error"><?= $error['mot_de_passe'] ?? '' ?></span>
+  </div>
+
+  <div class="form-error"><?= $error['connexion'] ?? '' ?></div>
+
+  <div class="form-group">
+    <input type="submit" id="valider" value="Se connecter">
+  </div>
 </form>
+
 <div class="inscri">
-    <p class="textnotcolor">Pas encore de compte ? <a href="./controller_inscription.php">Inscrivez-vous</a></p>
-    <?php 
-    include_once '../../templates/footer.php';
-    include_once '../../templates/script.php';
-    ?>
+  <p class="textnotcolor text-center">
+    Pas encore de compte ?
+    <a href="./controller_inscription.php">Inscrivez-vous</a>
+  </p>
 </div>
