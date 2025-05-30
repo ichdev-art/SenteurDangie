@@ -11,7 +11,7 @@ class Produits
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'SELECT pro_nom,pro_img,pro_description,pro_prix,pro_quantite,pro_id 
+        $sql = 'SELECT pro_id,pro_nom,pro_img,pro_description,pro_prix,pro_quantite 
         from `76_produits`';
 
         $stmt = $pdo->prepare($sql);
@@ -275,33 +275,33 @@ class Produits
 
         return true;
     }
-    
+
     /**
      * Récupère toutes les commandes de tous les utilisateurs.
      * 
      * @return array Liste des commandes avec détails sur l'utilisateur, produits et quantités.
      */
-    public static function afficherToutecommande(){
+    public static function afficherToutecommande()
+    {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = 'SELECT 
-                    u.use_id,
-                    u.use_nom,
-                    u.use_prenom,
-                    u.use_mail,
-                    c.com_id,
-                    c.com_dateCommande,
-                    c.com_dateLivraison,
-                    p.pro_nom,
-                    p.pro_description,
-                    p.pro_prix,
-                    p.pro_img,
-                    cl.comlig_quantité
-                FROM 76_commande c
-                JOIN 76_users u ON c.use_id = u.use_id
-                JOIN 76_commande_ligne cl ON c.com_id = cl.com_id
-                JOIN 76_produits p ON cl.pro_id = p.pro_id';
+            u.use_id,
+            u.use_nom,
+            u.use_prenom,
+            u.use_mail,
+            c.com_id,
+            c.com_dateCommande,
+            c.com_dateLivraison,
+            SUM(p.pro_prix * cl.comlig_quantité) AS total,
+            SUM(cl.comlig_quantité) AS nb_produits
+        FROM 76_commande c
+        JOIN 76_users u ON c.use_id = u.use_id
+        JOIN 76_commande_ligne cl ON c.com_id = cl.com_id
+        JOIN 76_produits p ON cl.pro_id = p.pro_id
+        GROUP BY c.com_id
+        ORDER BY c.com_dateCommande DESC';
 
         $stmt = $pdo->prepare($sql);
 
@@ -320,7 +320,27 @@ class Produits
         unset($value);
 
         return $command;
-
     }
-    
+
+    public static function afficherDetailCommande($commandeId) {
+    $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = 'SELECT 
+                p.pro_nom,
+                p.pro_description,
+                p.pro_prix,
+                p.pro_img,
+                cl.comlig_quantité
+            FROM 76_commande_ligne cl
+            JOIN 76_produits p ON cl.pro_id = p.pro_id
+            WHERE cl.com_id = :id';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':id', $commandeId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }

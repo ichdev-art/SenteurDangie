@@ -55,6 +55,7 @@ include_once '../../templates/sidebar.php';
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
       <tr>
+        <th>ID Produit</th>
         <th>Nom</th>
         <th>Description</th>
         <th>Prix</th>
@@ -66,12 +67,13 @@ include_once '../../templates/sidebar.php';
     <tbody>
       <?php foreach ($produit as $value) { ?>
         <tr>
+          <td><?= htmlspecialchars($value['pro_id']) ?></td>
           <td><?= $value['pro_nom'] ?></td>
           <td><?= $value['pro_description'] ?></td>
           <td><?= $fmt->formatCurrency($value["pro_prix"], "EUR") ?></td>
           <td><?= $value['pro_quantite'] ?></td>
           <td>
-            <img src="../../assets/img/<?= $value['pro_img'] ?>" style="width:50px;" alt="<?= $value['pro_nom'] ?>">
+            <img class="img_admin" src="../../assets/img/<?= $value['pro_img'] ?>" style="width:50px;" alt="<?= $value['pro_nom'] ?>">
           </td>
           <td>
             <div class="d-flex gap-2">

@@ -43,7 +43,7 @@ body {
 
 // FORMULAIRE INSCRIPTION
 #inscriptionF {
-    max-width: 500px;
+    max-width: 31.2rem;
     margin: 5rem auto;
     padding: 2rem;
     background-color: #fff;
@@ -62,12 +62,12 @@ body {
         flex-direction: column;
         margin-bottom: 1.5rem;
 
-        label {
+        & label {
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        input[type="text"],
+        & input[type="text"],
         input[type="email"],
         input[type="password"],
         input[type="number"] {
@@ -131,8 +131,8 @@ body {
 
 // CONFIRMATION
 .confirm {
-    max-width: 600px;
-    margin: 100px auto;
+    max-width: 37.5rem;
+    margin: 6.2rem auto;
     text-align: center;
     background-color: #f1f1f1;
     padding: 2rem;
@@ -159,7 +159,7 @@ body {
 // CONNEXION
 
 #connexionC {
-    max-width: 400px;
+    max-width: 25rem;
     margin: 5rem auto;
     background-color: #fff;
     padding: 2rem;
@@ -228,8 +228,8 @@ body {
 
 // DECONNEXION 
 .containerD {
-    max-width: 600px;
-    margin: 100px auto;
+    max-width: 37.5rem;
+    margin: 6.25rem auto;
     text-align: center;
     background: #f9f9f9;
     padding: 2rem;
@@ -268,7 +268,7 @@ body {
     }
 
     .card-img-top {
-        height: 250px;
+        height: 15.6rem;
         object-fit: cover;
         border-radius: 15px 15px 0 0;
     }
@@ -377,7 +377,7 @@ body {
             margin: 1rem 0;
 
             input {
-                width: 60px;
+                width: 3.75rem;
                 padding: 0.4rem;
                 border-radius: 0.3rem;
                 border: 1px solid #ccc;
@@ -481,8 +481,8 @@ body {
     }
 
     & .produit img {
-        width: 80px;
-        height: 80px;
+        width: 5rem;
+        height: 5rem;
         object-fit: cover;
         border-radius: 8px;
     }
@@ -560,7 +560,7 @@ body {
 // AFFICHER TOUT LES PRODUITS ADMIN
 
 .admin-panel {
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 2rem auto;
   padding: 2rem;
   background: #fff;
@@ -642,12 +642,12 @@ body {
         }
 
         .img-mini {
-          width: 60px;
+          width: 3.75rem;
           height: auto;
           border-radius: 6px;
 
           @media (max-width: 768px) {
-            width: 40px;
+            width: 2.5rem;
             
           }
         }
@@ -712,7 +712,7 @@ body {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 37.5rem;
     margin: 2rem auto;
 
     .modifier-header {
@@ -753,7 +753,7 @@ body {
 
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 6.25rem;
         }
 
         button {
@@ -800,7 +800,7 @@ body {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 37.5rem;
     margin: 2rem auto;
 
     & .ajouter-header {
@@ -847,7 +847,7 @@ body {
 
         & textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 6.25rem;
         }
 
         & button {
@@ -924,9 +924,9 @@ body {
 }
 
 
-// NAVBAR ADMIN 
+// sidebar 
 .sidebar {
-  width: 220px;
+  width: 13.75rem;
   min-height: 100vh;
   position: fixed;
   left: 0;
@@ -934,8 +934,8 @@ body {
 }
 
 main {
-  margin-left: 220px;
-  width: calc(100% - 220px);
+  margin-left: 13.75rem;
+  width: calc(100% - 13.75rem);
 }
 
 .sidebar .nav-link:hover {
@@ -943,7 +943,7 @@ main {
   border-radius: 5px;
 }
 
-img {
+.img_admin {
   object-fit: cover;
   height: 50px;
   border-radius: 5px;
