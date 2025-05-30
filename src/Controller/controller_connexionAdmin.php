@@ -1,6 +1,5 @@
 <?php 
 require_once '../../config.php';
-
 session_start();
 
 if (isset($_SESSION['adm_id'])) {
@@ -8,55 +7,52 @@ if (isset($_SESSION['adm_id'])) {
     exit;
 }
 
+
+
 $error = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['pseudo'])) {
-        if (empty($_POST['pseudo'])) {
-            $error['pseudo'] = 'Pseudo obligatoire';
-        }
-    }
-    if (isset($_POST['mot_de_passe'])) {
-        if (empty($_POST['mot_de_passe'])) {
-            $error['mot_de_passe'] = 'Mot de passe obligatoire';
-        }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $pseudo = trim($_POST['pseudo'] ?? '');
+    $mot_de_passe = $_POST['mot_de_passe'] ?? '';
+
+    if (empty($pseudo)) {
+        $error['pseudo'] = 'Pseudo obligatoire';
     }
 
-    if (!empty($_POST['pseudo']) && !empty($_POST['mot_de_passe'])) {
-        // On se connecte a la base de donnée via pdo = creation instance
-        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-        // Options avance sur notre instance
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+    if (empty($mot_de_passe)) {
+        $error['mot_de_passe'] = 'Mot de passe obligatoire';
+    }
 
-        $sql = 'SELECT adm_id,adm_pseudo,adm_mdp from 76_admin where adm_pseudo = :pseudo';
+    if (empty($error)) {
+        try {
+            $pdo = new PDO(
+                'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8',
+                DB_USER,
+                DB_PASS,
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+            );
 
-        $stmt = $pdo->prepare($sql);
+            $stmt = $pdo->prepare('SELECT adm_id, adm_pseudo, adm_mdp FROM 76_admin WHERE adm_pseudo = :pseudo');
+            $stmt->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+            $stmt->execute();
 
-        $stmt->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt->execute();
+            if (!$user || !password_verify($mot_de_passe, $user['adm_mdp'])) {
+                $error['connexion'] = 'Pseudo ou mot de passe incorrect';
+            }
 
-        $stmt->rowCount() == 0 ? $found = false : $found = true;
-
-        // on stock le resultat de la requete dans un tableau associatif
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($found == false) {
-            $error['connexion'] = 'Pseudo ou Mot de passe incorrect';
-        } else {
-            if (password_verify($_POST['mot_de_passe'], $user['adm_mdp'])) {
-                $_SESSION = $user;
+            if (empty($error)) {
+                $_SESSION['adm_id'] = $user['adm_id'];
+                $_SESSION['adm_pseudo'] = $user['adm_pseudo'];
                 header('Location: controller_produitAdmin.php');
                 exit;
-            } else {
-                $error['connexion'] = 'Pseudo ou Mot de passe incorrect';
             }
+
+        } catch (PDOException $e) {
+            $error['connexion'] = 'Erreur de connexion à la base de données.';
         }
-
-        $pdo = '';
-
     }
-} 
+}
 
 include_once '../View/view_connexionAdmin.php';

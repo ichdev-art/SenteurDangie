@@ -1,7 +1,7 @@
 <?php 
 
 include_once '../../templates/head.php';
-include_once '../../templates/navAdmin.php';
+include_once '../../templates/sidebar.php';
 
 ?>
 
@@ -13,7 +13,6 @@ include_once '../../templates/navAdmin.php';
     </div>
 
     <?php 
-    include_once '../../templates/footer.php';
     include_once '../../templates/script.php';
     ?>
 </body>

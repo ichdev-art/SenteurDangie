@@ -33,3 +33,9 @@ include_once '../../templates/nav.php';
     <a href="./controller_inscription.php">Inscrivez-vous</a>
   </p>
 </div>
+
+<?php 
+
+include_once '../../templates/footer.php';
+
+?>

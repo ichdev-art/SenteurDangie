@@ -112,13 +112,29 @@ body p {
   font-size: 0.95rem;
 }
 
-.confirm h1 {
+.confirm {
+  max-width: 600px;
+  margin: 100px auto;
   text-align: center;
-  font-size: 3rem;
+  background-color: #f1f1f1;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-.confirm p {
-  text-align: center;
-  font-size: 1.5rem;
+
+.btnConfirm {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #5C5792;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.btnConfirm:hover {
+  background-color: #211A44;
 }
 
 #connexionC {
@@ -182,29 +198,28 @@ body p {
 }
 
 .containerD {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-.containerD h1 {
+  max-width: 600px;
+  margin: 100px auto;
   text-align: center;
-  font-size: 3rem;
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-@media (max-width: 400px) {
-  .containerD h1 {
-    font-size: 2rem;
-  }
+
+.btnRetour {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #5C5792;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
-.containerD p {
-  text-align: center;
-  font-size: 1.5rem;
-}
-@media (max-width: 400px) {
-  .containerD p {
-    font-size: 1rem;
-  }
+
+.btnRetour:hover {
+  background-color: #211A44;
 }
 
 .mtg-card-custom {
@@ -364,16 +379,16 @@ body p {
 }
 
 .commande-card {
-  background: #FFF;
-  border-radius: 16px;
-  padding: 1.2rem;
-  margin: 1.2rem auto;
-  box-shadow: 0 4px 10px rgba(33, 26, 68, 0.1);
-  border-left: 8px solid #BE9CC7;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 .commande-card .commande-header h3 {
-  color: #5C5792;
-  margin-bottom: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .commande-produits {
@@ -382,35 +397,42 @@ body p {
   padding-top: 1.1rem;
 }
 .commande-produits .dateLivraison {
-  font-size: 1.5rem;
-  color: #5C5792;
-  margin-top: 0;
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1rem;
 }
 .commande-produits .produit {
   display: flex;
-  gap: 1.9rem;
-  margin-bottom: 1.9rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
 }
 .commande-produits .produit .dateLivraison {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1rem;
 }
 .commande-produits .produit img {
-  width: 3.75rem;
-  height: 3.75rem;
+  width: 80px;
+  height: 80px;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 10px;
-  border: 2px solid #9F8DC3;
+  border-radius: 8px;
 }
 .commande-produits .infos .nom {
-  font-weight: bold;
-  color: #211A44;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .commande-footer {
-  margin-top: 1rem;
+  text-align: right;
+  font-size: 1.1rem;
   font-weight: bold;
-  color: #5C5792;
+  margin-top: 1rem;
 }
 
 .connexion-page {
@@ -458,7 +480,18 @@ body p {
 }
 
 .admin-panel {
+  max-width: 1200px;
+  margin: 2rem auto;
   padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+@media (max-width: 768px) {
+  .admin-panel {
+    padding: 1rem;
+  }
 }
 .admin-panel .panel-header {
   display: flex;
@@ -466,52 +499,95 @@ body p {
   align-items: center;
   margin-bottom: 2rem;
 }
+@media (max-width: 768px) {
+  .admin-panel .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
 .admin-panel .panel-header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  color: #333;
 }
-.admin-panel .panel-header .ajoute-button {
-  background: #3490dc;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+.admin-panel .panel-header .btn-ajout {
+  padding: 0.6rem 1.2rem;
+  background: #007bff;
+  color: #fff;
+  border-radius: 8px;
   text-decoration: none;
-  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
 }
-.admin-panel .panel-header .ajoute-button:hover {
-  background: #2779bd;
+.admin-panel .panel-header .btn-ajout:hover {
+  background: #0056b3;
+}
+.admin-panel .table-wrapper {
+  overflow-x: auto;
 }
 .admin-panel .produits-table {
   width: 100%;
-  background: white;
   border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem;
 }
-.admin-panel .produits-table th,
-.admin-panel .produits-table td {
-  padding: 1rem;
+@media (max-width: 768px) {
+  .admin-panel .produits-table {
+    font-size: 0.85rem;
+  }
+}
+.admin-panel .produits-table thead {
+  background-color: #f8f9fa;
+}
+.admin-panel .produits-table thead th {
   text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid #ddd;
+}
+.admin-panel .produits-table tbody tr {
   border-bottom: 1px solid #eee;
 }
-.admin-panel .produits-table th {
-  background: #f0f0f0;
+.admin-panel .produits-table tbody tr:hover {
+  background-color: #f6f6f6;
 }
-.admin-panel .produits-table .modif {
-  color: #3490dc;
-  margin-right: 0.5rem;
-  background: none;
-  border: none;
-  text-decoration: none;
-  cursor: pointer;
+.admin-panel .produits-table tbody tr td {
+  padding: 0.8rem;
+  vertical-align: middle;
 }
-.admin-panel .produits-table .supprim {
-  color: #e3342f;
-  background: none;
-  border: none;
+.admin-panel .produits-table tbody tr .img-mini {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+}
+@media (max-width: 768px) {
+  .admin-panel .produits-table tbody tr .img-mini {
+    width: 40px;
+  }
+}
+.admin-panel .produits-table tbody tr .actions {
+  display: flex;
+  gap: 10px;
+}
+.admin-panel .produits-table tbody tr .actions .btn-edit,
+.admin-panel .produits-table tbody tr .actions .btn-delete {
+  font-size: 1.2rem;
   text-decoration: none;
-  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.admin-panel .produits-table tbody tr .actions .btn-edit {
+  background-color: #ffe58f;
+  color: #8c6d1f;
+}
+.admin-panel .produits-table tbody tr .actions .btn-edit:hover {
+  background-color: #ffdd73;
+}
+.admin-panel .produits-table tbody tr .actions .btn-delete {
+  background-color: #ffcccc;
+  color: #b30000;
+}
+.admin-panel .produits-table tbody tr .actions .btn-delete:hover {
+  background-color: #ff9999;
 }
 
 .admin-panell {
@@ -708,12 +784,58 @@ body p {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.356);
-  text-align: center;
-  background: rgba(255, 255, 255, 0.342);
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
-footer a {
+
+main {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+}
+
+.sidebar .nav-link:hover {
+  background-color: #495057;
+  border-radius: 5px;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 50px;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #fdf7fa;
+  color: #3c2a4d;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+footer h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+footer .footer-socials ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+footer .footer-links {
+  margin: 1rem 0;
+}
+footer .footer-links a {
+  margin: 0 0.5rem;
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: inherit;
+}
+footer .footer-contact a {
+  color: inherit;
+  text-decoration: none;
 }/*# sourceMappingURL=style.css.map */

@@ -2,10 +2,9 @@
 class Produits
 {
     /**
+     * Récupère tous les produits de la base de données.
      * 
-     * 
-     * 
-     * 
+     * @return array Liste des produits avec nom, image, description, prix, quantité et ID.
      */
     public static function afficherProduit()
     {
@@ -26,10 +25,9 @@ class Produits
     }
 
     /**
+     * Récupère les informations d'un produit spécifique ainsi que les avis associés.
      * 
-     * 
-     * 
-     * 
+     * @return array Informations détaillées du produit et de ses avis (nom, prix, description, auteur, date, etc.).
      */
     public static function afficherUnProduit()
     {
@@ -64,10 +62,9 @@ class Produits
     }
 
     /**
+     * Récupère toutes les commandes passées par l'utilisateur connecté.
      * 
-     * 
-     * 
-     * 
+     * @return array Liste structurée des commandes avec produits associés, dates et total.
      */
     public static function afficheCommande()
     {
@@ -155,10 +152,9 @@ class Produits
     }
 
     /**
+     * Supprime un produit de la base de données à partir de son ID passé en GET.
      * 
-     * 
-     * 
-     * 
+     * @return void
      */
     public static function deleteProduit()
     {
@@ -175,10 +171,9 @@ class Produits
     }
 
     /**
+     * Met à jour les informations d’un produit à partir des données POST et de l’ID passé en GET.
      * 
-     * 
-     * 
-     * 
+     * @return void Redirige vers la page d'administration des produits après modification.
      */
     public static function modifierProduit()
     {
@@ -206,10 +201,9 @@ class Produits
     }
 
     /**
+     * Récupère les détails d’un produit spécifique selon son ID.
      * 
-     * 
-     * 
-     * 
+     * @return array Données complètes du produit (nom, prix, quantité, image...).
      */
     public static function avoirProduitParId()
     {
@@ -231,10 +225,9 @@ class Produits
 
 
     /**
+     * Ajoute un nouveau produit à la base de données avec une image uploadée.
      * 
-     * 
-     * 
-     * 
+     * @return true|string Retourne true si succès, ou un message d’erreur si échec.
      */
     public static function ajouterProduit()
     {
@@ -282,4 +275,52 @@ class Produits
 
         return true;
     }
+    
+    /**
+     * Récupère toutes les commandes de tous les utilisateurs.
+     * 
+     * @return array Liste des commandes avec détails sur l'utilisateur, produits et quantités.
+     */
+    public static function afficherToutecommande(){
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT 
+                    u.use_id,
+                    u.use_nom,
+                    u.use_prenom,
+                    u.use_mail,
+                    c.com_id,
+                    c.com_dateCommande,
+                    c.com_dateLivraison,
+                    p.pro_nom,
+                    p.pro_description,
+                    p.pro_prix,
+                    p.pro_img,
+                    cl.comlig_quantité
+                FROM 76_commande c
+                JOIN 76_users u ON c.use_id = u.use_id
+                JOIN 76_commande_ligne cl ON c.com_id = cl.com_id
+                JOIN 76_produits p ON cl.pro_id = p.pro_id';
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute();
+
+        $command = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($command as &$value) {
+            if (isset($value['com_dateCommande'])) {
+                $date = new DateTimeImmutable($value['com_dateCommande']);
+                $dateL = new DateTimeImmutable($value['com_dateLivraison']);
+                $value['com_dateLivraison'] = $dateL->format('d F Y');
+                $value['com_dateCommande'] = $date->format('d F Y');
+            }
+        }
+        unset($value);
+
+        return $command;
+
+    }
+    
 }

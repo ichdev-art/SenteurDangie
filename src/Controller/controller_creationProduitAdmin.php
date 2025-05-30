@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -27,28 +27,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error['prix'] = 'Prix obligatoire';
         } elseif (!is_numeric($_POST['prix'])) {
             $error['prix'] = 'Prix non valide';
+        } elseif ($_POST['prix'] < 0) {
+            $error['prix'] = 'Le prix ne peut pas être négatif';
         }
     }
     if (isset($_POST['quantite'])) {
-        if (empty($_POST['quantite'])) {
+        if ($_POST['quantite'] === '') {
             $error['quantite'] = 'Quantité obligatoire';
-        } elseif (!is_numeric($_POST['quantite'])) {
+        } elseif (!ctype_digit($_POST['quantite']) || $_POST['quantite'] < 0) {
             $error['quantite'] = 'Quantité non valide';
         }
     }
-    
+
     $resultat = Produits::ajouterProduit();
     if ($resultat !== true) {
-        $error['image'] = $resultat;    
+        $error['image'] = $resultat;
     }
-  
-        if (empty($error)) {
-            // Appel de la méthode pour ajouter le produit
-            $produit = Produits::ajouterProduit();
-            header("Location: ../Controller/controller_produitAdmin.php");  // Redirection vers une page de succès
-            exit;
-        }
+
+    if (empty($error)) {
+        // Appel de la méthode pour ajouter le produit
+        $produit = Produits::ajouterProduit();
+        header("Location: ../Controller/controller_produitAdmin.php");  // Redirection vers une page de succès
+        exit;
     }
+}
 
 
 
