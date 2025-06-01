@@ -13,20 +13,31 @@
         <li class="nav-item">
           <a class="nav-link" href="/src/Controller/controller_commande.php">Commandes</a>
         </li>
+        <li class="nav-item">
+          <button class="btn position-relative" id="btnOuvrirPanier">
+            🛒
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="compteurPanier">0</span>
+          </button>
+        </li>
       </ul>
 
+
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../Controller/controller_connexion.php">
-            <i class="fa-solid fa-user"></i> Connexion
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../Controller/controller_deconnexion.php">
-            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
-          </a>
-        </li>
+        <?php if (isset($_SESSION['user'])) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="../Controller/controller_deconnexion.php">
+              <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+            </a>
+          </li>
+        <?php } else { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="../Controller/controller_connexion.php">
+              <i class="fa-solid fa-user"></i> Connexion
+            </a>
+          </li>
+        <?php } ?>
       </ul>
+
     </div>
   </div>
 </nav>

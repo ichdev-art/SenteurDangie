@@ -4,7 +4,7 @@ session_start();
 require_once '../../config.php';
 require_once '../Model/model_produit.php';
 
-if (!isset($_SESSION['use_id'])) {
+if (!isset($_SESSION['user'])) {
     header('Location: controller_connexion.php');
     exit;
 }

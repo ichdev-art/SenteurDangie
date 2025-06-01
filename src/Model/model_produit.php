@@ -92,7 +92,7 @@ class Produits
 
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':use_id', $_SESSION['use_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':use_id', $_SESSION['user']['id'], PDO::PARAM_INT);
 
         $stmt->execute();
 

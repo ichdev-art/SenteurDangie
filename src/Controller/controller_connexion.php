@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../../config.php';
 
 session_start();
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
         // Options avance sur notre instance
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+
 
         $sql = 'SELECT use_id,use_nom,use_prenom,use_mail,use_mdp from 76_users where use_mail = :mail';
 
@@ -46,7 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error['connexion'] = 'Email ou Mot de passe incorrect';
         } else {
             if (password_verify($_POST['mot_de_passe'], $user['use_mdp'])) {
-                $_SESSION = $user;
+                $_SESSION['user'] = [
+                    'id' => $user['use_id'],
+                    'nom' => $user['use_nom'],
+                    'prenom' => $user['use_prenom'],
+                    'email' => $user['use_mail']
+                ];
                 header('Location: controller_afficherToutproduits.php');
                 exit;
             } else {
@@ -55,8 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $pdo = '';
-
     }
-} 
+}
 
 include_once '../View/view_connexion.php';
