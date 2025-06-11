@@ -16,7 +16,6 @@ class Produits
 
         $stmt = $pdo->prepare($sql);
 
-
         $stmt->execute();
 
         $bougieProduit = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -322,6 +321,13 @@ class Produits
         return $command;
     }
 
+    /**
+     * 
+     *  Affiche les détails d'une commande spécifique à partir de son ID.
+     * 
+     * @param int $commandeId L'ID de la commande à afficher.
+     * @return array Détails des produits de la commande (nom, description, prix, image, quantité).
+     */
     public static function afficherDetailCommande($commandeId) {
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

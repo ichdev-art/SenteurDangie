@@ -33,7 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':mail', $_POST['email'], PDO::PARAM_STR);
+        // function permettant de nettoyer les inputs
+        function safeInput($string)
+        {
+            $input = trim($string);
+            $input = htmlspecialchars($input);
+            return $input;
+        }
+
+        $stmt->bindValue(':mail', safeInput($_POST['email']), PDO::PARAM_STR);
 
         $stmt->execute();
 

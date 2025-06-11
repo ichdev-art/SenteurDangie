@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return $input;
         }
 
-        $stmt->bindValue(":use_codePostal", safeInput($_POST["codePostal"]), PDO::PARAM_STR);
+        $stmt->bindValue(":use_codePostal", safeInput($_POST["codePostal"]), PDO::PARAM_INT);
         $stmt->bindValue(":use_nom", safeInput($_POST["nom"]), PDO::PARAM_STR);
         $stmt->bindValue(":use_prenom", safeInput($_POST["prenom"]), PDO::PARAM_STR);
         $stmt->bindValue(":use_adresse", safeInput($_POST["adresse"]), PDO::PARAM_STR);
