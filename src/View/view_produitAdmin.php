@@ -21,26 +21,26 @@ include_once '../../templates/sidebar.php';
   <!-- Stats des produit/users/commande -->
   <div class="row mb-4">
     <div class="col-md-4">
-      <div class="card text-bg-primary">
+      <div class="card text-bg-dark">
         <div class="card-body">
           <h5 class="card-title">Produits</h5>
-          <p class="card-text fs-3"><?= $countProduits ?></p>
+          <p class="card-text fs-3 text-white"><?= $countProduits ?></p>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card text-bg-success">
+      <div class="card text-bg-dark">
         <div class="card-body">
           <h5 class="card-title">Commandes</h5>
-          <p class="card-text fs-3"><?= $countCommandes ?></p>
+          <p class="card-text fs-3 text-white"><?= $countCommandes ?></p>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card text-bg-warning">
+      <div class="card text-bg-dark">
         <div class="card-body">
           <h5 class="card-title">Utilisateurs</h5>
-          <p class="card-text fs-3"><?= $countUtilisateurs ?></p>
+          <p class="card-text fs-3 text-white"><?= $countUtilisateurs ?></p>
         </div>
       </div>
     </div>
