@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 11 juin 2025 à 17:13
+-- Généré le : ven. 27 juin 2025 à 09:11
 -- Version du serveur : 8.4.3
 -- Version de PHP : 8.3.16
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `senteurdangie`
 --
+CREATE DATABASE IF NOT EXISTS `senteurdangie` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `senteurdangie`;
 
 -- --------------------------------------------------------
 
@@ -27,11 +29,13 @@ SET time_zone = "+00:00";
 -- Structure de la table `76_admin`
 --
 
-CREATE TABLE `76_admin` (
-  `adm_id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `76_admin` (
+  `adm_id` int NOT NULL AUTO_INCREMENT,
   `adm_pseudo` varchar(250) NOT NULL,
-  `adm_mdp` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `adm_mdp` varchar(250) NOT NULL,
+  PRIMARY KEY (`adm_id`),
+  UNIQUE KEY `adm_pseudo` (`adm_pseudo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `76_admin`
@@ -46,13 +50,16 @@ INSERT INTO `76_admin` (`adm_id`, `adm_pseudo`, `adm_mdp`) VALUES
 -- Structure de la table `76_avis`
 --
 
-CREATE TABLE `76_avis` (
-  `avi_id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `76_avis` (
+  `avi_id` int NOT NULL AUTO_INCREMENT,
   `avi_description` varchar(500) NOT NULL,
   `avi_date` date NOT NULL,
   `pro_id` int NOT NULL,
-  `use_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `use_id` int NOT NULL,
+  PRIMARY KEY (`avi_id`),
+  KEY `use_id` (`use_id`),
+  KEY `76_avis_ibfk_1` (`pro_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `76_avis`
@@ -71,12 +78,14 @@ INSERT INTO `76_avis` (`avi_id`, `avi_description`, `avi_date`, `pro_id`, `use_i
 -- Structure de la table `76_commande`
 --
 
-CREATE TABLE `76_commande` (
-  `com_id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `76_commande` (
+  `com_id` int NOT NULL AUTO_INCREMENT,
   `com_dateCommande` date NOT NULL,
   `com_dateLivraison` date NOT NULL,
-  `use_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `use_id` int NOT NULL,
+  PRIMARY KEY (`com_id`),
+  KEY `use_id` (`use_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `76_commande`
@@ -100,10 +109,12 @@ INSERT INTO `76_commande` (`com_id`, `com_dateCommande`, `com_dateLivraison`, `u
 -- Structure de la table `76_commande_ligne`
 --
 
-CREATE TABLE `76_commande_ligne` (
+CREATE TABLE IF NOT EXISTS `76_commande_ligne` (
   `pro_id` int NOT NULL,
   `com_id` int NOT NULL,
-  `comlig_quantité` int NOT NULL
+  `comlig_quantité` int NOT NULL,
+  PRIMARY KEY (`pro_id`,`com_id`),
+  KEY `com_id` (`com_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -125,23 +136,24 @@ INSERT INTO `76_commande_ligne` (`pro_id`, `com_id`, `comlig_quantité`) VALUES
 -- Structure de la table `76_produits`
 --
 
-CREATE TABLE `76_produits` (
-  `pro_id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `76_produits` (
+  `pro_id` int NOT NULL AUTO_INCREMENT,
   `pro_nom` varchar(200) NOT NULL,
   `pro_description` varchar(1000) NOT NULL,
   `pro_prix` int NOT NULL,
   `pro_quantite` int NOT NULL,
-  `pro_img` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `pro_img` varchar(250) NOT NULL,
+  PRIMARY KEY (`pro_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `76_produits`
 --
 
 INSERT INTO `76_produits` (`pro_id`, `pro_nom`, `pro_description`, `pro_prix`, `pro_quantite`, `pro_img`) VALUES
-(1, 'Composition', 'Composition florale gourmande.', 37, 10, 'composition37e.jpg'),
-(3, 'Gourmande Chocolats', 'Gourmande au goût chocolate', 15, 10, 'gourmandechocolat15e.jpg'),
-(5, 'Gourmande Rose', 'Gourmande douce parfumée à la rose.', 15, 10, 'gourmanderose15e.jpg'),
+(1, 'Composition', 'Une harmonie parfaite entre douceur florale et notes sucrées. Cette bougie dévoile une composition raffinée, mêlant fleurs délicates et touches gourmandes pour une ambiance à la fois élégante et réconfortante. Idéale pour créer un cocon de bien-être, elle parfume subtilement ton intérieur tout en apportant une touche de charme et de gourmandise.', 37, 10, 'composition37e.jpg'),
+(3, 'Gourmande Chocolats', 'Plonge dans une ambiance chaleureuse avec cette bougie au parfum gourmand de chocolat. Sa senteur riche et sucrée évoque une tablette fondante tout juste cassée, idéale pour créer une atmosphère cosy et réconfortante. Parfaite pour les amateurs de douceurs, elle apporte une touche de gourmandise irrésistible à ton intérieur.', 15, 10, 'gourmandechocolat15e.jpg'),
+(5, 'Gourmande Rose', 'Laisse-toi envoûter par cette bougie à la senteur gourmande et douce, délicatement parfumée à la rose. Son arôme floral et sucré crée une ambiance chaleureuse et réconfortante, idéale pour un moment de détente ou une touche romantique à ton intérieur. Fabriquée avec soin, elle transforme chaque pièce en un cocon parfumé et apaisant.', 15, 10, 'gourmanderose15e.jpg'),
 (29, 'Pomme de pin', 'Bougie parfumée évoquant la fraîcheur boisée de la pomme de pin, idéale pour créer une ambiance chaleureuse et naturelle. Son design rustique s’inspire des forêts d’hiver, apportant une touche authentique à votre intérieur.', 10, 15, '681f3c778be6e_pommedepin.jpg'),
 (31, 'Fraise nain de jardin', 'Ajoutez une touche de fantaisie fruitée à votre intérieur avec cette bougie artisanale en forme de nain de jardin, délicieusement parfumée à la fraise.', 10, 25, '681f42a98da01_fraisenaindejardin.jpg');
 
@@ -151,16 +163,18 @@ INSERT INTO `76_produits` (`pro_id`, `pro_nom`, `pro_description`, `pro_prix`, `
 -- Structure de la table `76_users`
 --
 
-CREATE TABLE `76_users` (
-  `use_id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `76_users` (
+  `use_id` int NOT NULL AUTO_INCREMENT,
   `use_nom` varchar(100) NOT NULL,
   `use_prenom` varchar(100) NOT NULL,
   `use_mail` varchar(250) NOT NULL,
   `use_mdp` varchar(200) NOT NULL,
   `use_adresse` varchar(250) NOT NULL,
   `use_codePostal` int NOT NULL,
-  `use_ville` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `use_ville` varchar(200) NOT NULL,
+  PRIMARY KEY (`use_id`),
+  UNIQUE KEY `use_mail` (`use_mail`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `76_users`
@@ -174,86 +188,6 @@ INSERT INTO `76_users` (`use_id`, `use_nom`, `use_prenom`, `use_mail`, `use_mdp`
 (5, 'Moreau', 'Emma', 'emma.moreau@example.com', '$2y$10$zSrxdVrZaeY6IA6/Vdm/Bumkl44VIiHRYw29SGGLYkbrupl52nfOm', '8 impasse des Fleurs', 44000, 'Nantes'),
 (6, 'jourdain', 'ichem', 'ichem76610@hotmail.com', '$2y$10$lg1EYK6MyEDdeoitSHqjGuYkCfzObGI8GlLP2MaVDbmTyqBu7Am4O', '2 avenue rouget de lisle', 76610, '76610 - LE HAVRE'),
 (7, 'jourdain', 'ichem', 'tanjiro76610@outlook.fr', '$2y$10$3CL9x.1Cd4HkBqoI99tguOHmellFXq6OgfGN.jUoYXtWoEEEPILZW', '16 rue des sports', 76610, '76610 - LE HAVRE');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `76_admin`
---
-ALTER TABLE `76_admin`
-  ADD PRIMARY KEY (`adm_id`),
-  ADD UNIQUE KEY `adm_pseudo` (`adm_pseudo`);
-
---
--- Index pour la table `76_avis`
---
-ALTER TABLE `76_avis`
-  ADD PRIMARY KEY (`avi_id`),
-  ADD KEY `use_id` (`use_id`),
-  ADD KEY `76_avis_ibfk_1` (`pro_id`);
-
---
--- Index pour la table `76_commande`
---
-ALTER TABLE `76_commande`
-  ADD PRIMARY KEY (`com_id`),
-  ADD KEY `use_id` (`use_id`);
-
---
--- Index pour la table `76_commande_ligne`
---
-ALTER TABLE `76_commande_ligne`
-  ADD PRIMARY KEY (`pro_id`,`com_id`),
-  ADD KEY `com_id` (`com_id`);
-
---
--- Index pour la table `76_produits`
---
-ALTER TABLE `76_produits`
-  ADD PRIMARY KEY (`pro_id`);
-
---
--- Index pour la table `76_users`
---
-ALTER TABLE `76_users`
-  ADD PRIMARY KEY (`use_id`),
-  ADD UNIQUE KEY `use_mail` (`use_mail`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `76_admin`
---
-ALTER TABLE `76_admin`
-  MODIFY `adm_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT pour la table `76_avis`
---
-ALTER TABLE `76_avis`
-  MODIFY `avi_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `76_commande`
---
-ALTER TABLE `76_commande`
-  MODIFY `com_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `76_produits`
---
-ALTER TABLE `76_produits`
-  MODIFY `pro_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT pour la table `76_users`
---
-ALTER TABLE `76_users`
-  MODIFY `use_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
